@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factorio Modding Tool: Create Group</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span>0.1.1 Альфа</span>
+    </div>
+    <h1>Создание вкладки предметов</h1>
+	<p>Учитывайте то, что кастомные группы вам прийдеться добавлять в код предмета вручную.</p>
+    <form id="modForm">
+      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name" name="name" value="matterial" required>
+	  <br></br>
+
+      <label for="icon" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
+      <input type="text" id="icon" name="icon" value="__space-age__/graphics/icons/space-platform-foundation.png" required>
+	  <br></br>
+	  
+	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order" name="order" value="a" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson()">Создать файл</button>
+    </form>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	
+	<h1>Создание группы</h1>
+	<p>Учитывайте то, что кастомные группы вам прийдеться добавлять в код предмета вручную.</p>
+    <form id="modForm">
+      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name" name="name" value="raws" required>
+	  <br></br>
+
+      <label for="group" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
+      <input type="text" id="group" name="group" value="logistics" required>
+	  <br></br>
+	  
+	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order" name="order" value="a" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson2()">Создать файл</button>
+    </form>
+	<button class="button" onclick="window.location.href = 'index.html'">BACK</button>
+  </div>
+
+  <script>
+    function generateInfoJson() {
+      const name = document.getElementById("name").value;
+      const icon = document.getElementById("icon").value;
+      const order = document.getElementById("order").value;
+
+      const luaContent = `
+  {
+	type = "item-group",
+	name = "${name}",
+	icon = "${icon}",
+	order = "${order}",
+	icon_size = 128
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "item-group.lua";
+	  link.click();
+    }
+	
+	function generateInfoJson2() {
+      const name = document.getElementById("name").value;
+      const group = document.getElementById("group").value;
+      const order = document.getElementById("order").value;
+
+      const luaContent = `
+  {
+	type = "item-subgroup",
+	name = "${name}",
+	group = "${group}",
+	order = "${order}"
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "item-subgroup.lua";
+	  link.click();
+    }
+  </script>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<footer class="footer">
+  <p>Наведитесь на текст значения. При наведении на текст может появиться подсказка.</p>
+  <p>&copy; 2025 Factorio Modding Tool. Все права защищены... Так ведь?</p>
+  <a href="index.html">Главная</a> |
+  <a onclick="alert('Функция в разработке.')" href="https://example.com/support">Поддержка</a>
+</footer>
+</body>
+</html>
