@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factorio Modding Tool: Create Item</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span>0.1 Альфа</span>
+    </div>
+    <h1>Создание предмета</h1>
+    <form id="modForm">
+      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name" name="name" value="sodium" required>
+	  <br></br>
+
+      <label for="icon" title="Путь до вашей иконки предмета. Размеры иконок: 64х64.">Иконка:</label>
+      <input type="text" id="icon" name="icon" value="__space-age__/graphics/icons/space-platform-foundation.png" required>
+	  <br></br>
+
+      <label for="subgroup" title="Это группа предметов куда будет включен предмет. Например руда железа относиться с raw-resource.">Группа:</label>
+		<select id="subgroup" name="subgroup" required>
+		<option value="storage">logistics storage</option>
+		<option value="belt">logistics belt</option>
+		<option value="inserter">logistics inserter</option>
+		<option value="energy-pipe-distribution">logistics energy-pipe-distribution</option>
+		<option value="train-transport">logistics train-transport</option>
+		<option value="transport">logistics transport</option>
+		<option value="logistic-network">logistics logistic-network</option>
+		<option value="circuit-network">logistics circuit-network</option>
+		<option value="terrain">logistics terrain</option>
+		
+		<option value="tool">production tool</option>
+		<option value="energy">production energy</option>
+		<option value="extraction-machine">production extraction-machine</option>
+		<option value="smelting-machine">production smelting-machine</option>
+		<option value="production-machine">production production-machine</option>
+		<option value="module">production module</option>
+		<option value="space-related">production space-related</option>
+		
+		<option value="fluid-recipes">intermediate-products fluid-recipes</option>
+		<option value="raw-resource">intermediate-products raw-resource</option>
+		<option value="raw-material">intermediate-products raw-material</option>
+		<option value="barrel">intermediate-products barrel</option>
+		<option value="fill-barrel">intermediate-products fill-barrel</option>
+		<option value="empty-barrel">intermediate-products empty-barrel</option>
+		<option value="intermediate-product">intermediate-products intermediate-product</option>
+		<option value="intermediate-recipe">intermediate-products intermediate-recipe</option>
+		<option value="uranium-processing">intermediate-products uranium-processing</option>
+		<option value="science-pack">intermediate-products science-pack</option>
+		<option value="internal-process">intermediate-products internal-process</option>
+		
+		<option value="inserter">combat inserter</option>
+		<option value="gun">combat gun</option>
+		<option value="ammo">combat ammo</option>
+		<option value="capsule">combat capsule</option>
+		<option value="armor">combat armor</option>
+		<option value="equipment">combat equipment</option>
+		<option value="utility-equipment">combat utility-equipment</option>
+		<option value="military-equipment">combat military-equipment</option>
+		<option value="defensive-structure">combat defensive-structure</option>
+		<option value="turret">combat turret</option>
+		<option value="ammo-category">combat ammo-category</option>
+		
+		<option value="fluid">fluids fluid</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order" name="order" value="a" required>
+	  <br></br>
+	  
+	  <label for="inventory_move_sound" title="Звук предмета если переместить его в инвентаре. В списке не все варианты звуков.">Звук перемещения:</label>
+		<select id="inventory_move_sound" name="inventory_move_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="pick_sound" title="Звук предмета если взять его. В списке не все варианты звуков.">Звук взятия:</label>
+		<select id="pick_sound" name="pick_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="drop_sound" title="Звук предмета если кинуть его. В списке не все варианты звуков.">Звук кидания:</label>
+		<select id="drop_sound" name="drop_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="stack_size" title="Размер стака предмета. Не может быть минусовым.">Размер стака:</label>
+      <input type="number" id="stack_size" name="stack_size" value="100" required>
+	  <br></br>
+	  
+	  <label for="weight" title="Сколько может вместить предмета в ракете. Множиться на килограммы.">Вес:</label>
+      <input type="number" id="weight" name="weight" value="1" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson()">Создать файл</button>
+    </form>
+	<br></br>
+<br></br>
+<br></br>
+<br></br>
+	
+	<h1>Создание научного пакета</h1>
+    <form id="modForm">
+      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name" name="name" value="fluorite-science-pack" required>
+	  <br></br>
+
+      <label for="icon" title="Путь до вашей иконки предмета. Размеры иконок: 64х64.">Иконка:</label>
+      <input type="text" id="icon" name="icon" value="__space-age__/graphics/icons/metallurgic-science-pack.png" required>
+	  <br></br>
+
+      <label for="subgroup" title="Это группа предметов куда будет включен предмет. Например руда железа относиться с raw-resource.">Группа:</label>
+		<select id="subgroup" name="subgroup" required>
+		<option value="storage">logistics storage</option>
+		<option value="belt">logistics belt</option>
+		<option value="inserter">logistics inserter</option>
+		<option value="energy-pipe-distribution">logistics energy-pipe-distribution</option>
+		<option value="train-transport">logistics train-transport</option>
+		<option value="transport">logistics transport</option>
+		<option value="logistic-network">logistics logistic-network</option>
+		<option value="circuit-network">logistics circuit-network</option>
+		<option value="terrain">logistics terrain</option>
+		
+		<option value="tool">production tool</option>
+		<option value="energy">production energy</option>
+		<option value="extraction-machine">production extraction-machine</option>
+		<option value="smelting-machine">production smelting-machine</option>
+		<option value="production-machine">production production-machine</option>
+		<option value="module">production module</option>
+		<option value="space-related">production space-related</option>
+		
+		<option value="fluid-recipes">intermediate-products fluid-recipes</option>
+		<option value="raw-resource">intermediate-products raw-resource</option>
+		<option value="raw-material">intermediate-products raw-material</option>
+		<option value="barrel">intermediate-products barrel</option>
+		<option value="fill-barrel">intermediate-products fill-barrel</option>
+		<option value="empty-barrel">intermediate-products empty-barrel</option>
+		<option value="intermediate-product">intermediate-products intermediate-product</option>
+		<option value="intermediate-recipe">intermediate-products intermediate-recipe</option>
+		<option value="uranium-processing">intermediate-products uranium-processing</option>
+		<option value="science-pack">intermediate-products science-pack</option>
+		<option value="internal-process">intermediate-products internal-process</option>
+		
+		<option value="inserter">combat inserter</option>
+		<option value="gun">combat gun</option>
+		<option value="ammo">combat ammo</option>
+		<option value="capsule">combat capsule</option>
+		<option value="armor">combat armor</option>
+		<option value="equipment">combat equipment</option>
+		<option value="utility-equipment">combat utility-equipment</option>
+		<option value="military-equipment">combat military-equipment</option>
+		<option value="defensive-structure">combat defensive-structure</option>
+		<option value="turret">combat turret</option>
+		<option value="ammo-category">combat ammo-category</option>
+		
+		<option value="fluid">fluids fluid</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order" name="order" value="a" required>
+	  <br></br>
+	  
+	  <label for="inventory_move_sound" title="Звук предмета если переместить его в инвентаре. В списке не все варианты звуков.">Звук перемещения:</label>
+		<select id="inventory_move_sound" name="inventory_move_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="pick_sound" title="Звук предмета если взять его. В списке не все варианты звуков.">Звук взятия:</label>
+		<select id="pick_sound" name="pick_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="drop_sound" title="Звук предмета если кинуть его. В списке не все варианты звуков.">Звук кидания:</label>
+		<select id="drop_sound" name="drop_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="stack_size" title="Размер стака предмета. Не может быть минусовым.">Размер стака:</label>
+      <input type="number" id="stack_size" name="stack_size" value="200" required>
+	  <br></br>
+	  
+	  <label for="weight" title="Сколько может вместить предмета в ракете. Множиться на килограммы.">Вес:</label>
+      <input type="number" id="weight" name="weight" value="1" required>
+	  <br></br>
+	  
+	  <label for="durability" title="Сколько прочности у предмета.">Прочность:</label>
+      <input type="number" id="durability" name="durability" value="1" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson2()">Создать файл</button>
+    </form>
+	<br></br>
+<br></br>
+<br></br>
+<br></br>
+	
+	<h1>Создание строительного предмета</h1>
+    <form id="modForm">
+      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name" name="name" value="fluorite-science-pack" required>
+	  <br></br>
+
+      <label for="icon" title="Путь до вашей иконки предмета. Размеры иконок: 64х64.">Иконка:</label>
+      <input type="text" id="icon" name="icon" value="__space-age__/graphics/icons/metallurgic-science-pack.png" required>
+	  <br></br>
+
+      <label for="subgroup" title="Это группа предметов куда будет включен предмет. Например руда железа относиться с raw-resource.">Группа:</label>
+		<select id="subgroup" name="subgroup" required>
+		<option value="storage">logistics storage</option>
+		<option value="belt">logistics belt</option>
+		<option value="inserter">logistics inserter</option>
+		<option value="energy-pipe-distribution">logistics energy-pipe-distribution</option>
+		<option value="train-transport">logistics train-transport</option>
+		<option value="transport">logistics transport</option>
+		<option value="logistic-network">logistics logistic-network</option>
+		<option value="circuit-network">logistics circuit-network</option>
+		<option value="terrain">logistics terrain</option>
+		
+		<option value="tool">production tool</option>
+		<option value="energy">production energy</option>
+		<option value="extraction-machine">production extraction-machine</option>
+		<option value="smelting-machine">production smelting-machine</option>
+		<option value="production-machine">production production-machine</option>
+		<option value="module">production module</option>
+		<option value="space-related">production space-related</option>
+		
+		<option value="fluid-recipes">intermediate-products fluid-recipes</option>
+		<option value="raw-resource">intermediate-products raw-resource</option>
+		<option value="raw-material">intermediate-products raw-material</option>
+		<option value="barrel">intermediate-products barrel</option>
+		<option value="fill-barrel">intermediate-products fill-barrel</option>
+		<option value="empty-barrel">intermediate-products empty-barrel</option>
+		<option value="intermediate-product">intermediate-products intermediate-product</option>
+		<option value="intermediate-recipe">intermediate-products intermediate-recipe</option>
+		<option value="uranium-processing">intermediate-products uranium-processing</option>
+		<option value="science-pack">intermediate-products science-pack</option>
+		<option value="internal-process">intermediate-products internal-process</option>
+		
+		<option value="inserter">combat inserter</option>
+		<option value="gun">combat gun</option>
+		<option value="ammo">combat ammo</option>
+		<option value="capsule">combat capsule</option>
+		<option value="armor">combat armor</option>
+		<option value="equipment">combat equipment</option>
+		<option value="utility-equipment">combat utility-equipment</option>
+		<option value="military-equipment">combat military-equipment</option>
+		<option value="defensive-structure">combat defensive-structure</option>
+		<option value="turret">combat turret</option>
+		<option value="ammo-category">combat ammo-category</option>
+		
+		<option value="fluid">fluids fluid</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order" name="order" value="a" required>
+	  <br></br>
+	  
+	  <label for="inventory_move_sound" title="Звук предмета если переместить его в инвентаре. В списке не все варианты звуков.">Звук перемещения:</label>
+		<select id="inventory_move_sound" name="inventory_move_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="pick_sound" title="Звук предмета если взять его. В списке не все варианты звуков.">Звук взятия:</label>
+		<select id="pick_sound" name="pick_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="drop_sound" title="Звук предмета если кинуть его. В списке не все варианты звуков.">Звук кидания:</label>
+		<select id="drop_sound" name="drop_sound" required>
+		<option value="ammo_small_inventory_move">ammo_small_inventory_move</option>
+		<option value="ammo_small_inventory_pickup">ammo_small_inventory_pickup</option>
+		<option value="ammo_large_inventory_move">ammo_large_inventory_move</option>
+		<option value="ammo_large_inventory_pickup">ammo_large_inventory_pickup</option>
+		<option value="weapon_small_inventory_pickup">weapon_small_inventory_pickup</option>
+		<option value="weapon_small_inventory_move">weapon_small_inventory_move</option>
+		<option value="weapon_large_inventory_pickup">weapon_large_inventory_pickup</option>
+		<option value="weapon_large_inventory_move">weapon_large_inventory_move</option>
+		<option value="resource_inventory_move">resource_inventory_move</option>
+		<option value="resource_inventory_pickup">resource_inventory_pickup</option>
+		<option value="brick_inventory_move">brick_inventory_move</option>
+		<option value="brick_inventory_pickup">brick_inventory_pickup</option>
+		<option value="metal_small_inventory_move">metal_small_inventory_move</option>
+		<option value="metal_small_inventory_pickup">metal_small_inventory_pickup</option>
+		<option value="metal_large_inventory_move">metal_large_inventory_move</option>
+		<option value="metal_large_inventory_pickup">metal_large_inventory_pickup</option>
+		<option value="electric_small_inventory_move">electric_small_inventory_move</option>
+		<option value="electric_small_inventory_pickup">electric_small_inventory_pickup</option>
+		<option value="science_inventory_move">science_inventory_move</option>
+		<option value="science_inventory_pickup">science_inventory_pickup</option>
+		<option value="mechanical_inventory_move">mechanical_inventory_move</option>
+		<option value="mechanical_inventory_pickup">mechanical_inventory_pickup</option>
+		<option value="inserter_inventory_move">inserter_inventory_move</option>
+		<option value="inserter_inventory_pickup">inserter_inventory_pickup</option>
+		<option value="steam_inventory_move">steam_inventory_move</option>
+		<option value="steam_inventory_pickup">steam_inventory_pickup</option>
+		<option value="explosive_inventory_move">explosive_inventory_move</option>
+		<option value="explosive_inventory_pickup">explosive_inventory_pickup</option>
+		<option value="fluid_inventory_move">fluid_inventory_move</option>
+		<option value="fluid_inventory_pickup">fluid_inventory_pickup</option>
+		<option value="transport_belt_inventory_move">transport_belt_inventory_move</option>
+		<option value="transport_belt_inventory_pickup">transport_belt_inventory_pickup</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="stack_size" title="Размер стака предмета. Не может быть минусовым.">Размер стака:</label>
+      <input type="number" id="stack_size" name="stack_size" value="200" required>
+	  <br></br>
+	  
+	  <label for="weight" title="Сколько может вместить предмета в ракете. Множиться на килограммы.">Вес:</label>
+      <input type="number" id="weight" name="weight" value="1" required>
+	  <br></br>
+	  
+	  <label for="place_result" title="Сюда вписать название энтити который будет ставиться этим предметом.">Структура при установке:</label>
+      <input type="text" id="place_result" name="place_result" value="turbo-transport-belt" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson3()">Создать файл</button>
+    </form>
+	<button class="button" onclick="window.location.href = 'index.html'">BACK</button>
+  </div>
+
+  <script>
+    function generateInfoJson() {
+      const name = document.getElementById("name").value;
+      const icon = document.getElementById("icon").value;
+      const subgroup = document.getElementById("subgroup").value;
+      const order = document.getElementById("order").value;
+	  const inventory_move_sound = document.getElementById("inventory_move_sound").value;
+	  const pick_sound = document.getElementById("pick_sound").value;
+	  const drop_sound = document.getElementById("drop_sound").value;
+	  const stack_size = document.getElementById("stack_size").value;
+	  const weight = document.getElementById("weight").value;
+
+      const luaContent = `
+  {
+	type = "item",
+	name = "${name}",
+	icon = "${icon}",
+	subgroup = "${subgroup}",
+	order = "${order}",
+	inventory_move_sound = item_sounds.${inventory_move_sound},
+	pick_sound = item_sounds.${pick_sound},
+	drop_sound = item_sounds.${drop_sound},
+	stack_size = ${stack_size},
+	weight = ${weight}*kg
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "item.lua";
+	  link.click();
+    }
+	
+	function generateInfoJson2() {
+      const name = document.getElementById("name").value;
+      const icon = document.getElementById("icon").value;
+      const subgroup = document.getElementById("subgroup").value;
+      const order = document.getElementById("order").value;
+	  const inventory_move_sound = document.getElementById("inventory_move_sound").value;
+	  const pick_sound = document.getElementById("pick_sound").value;
+	  const drop_sound = document.getElementById("drop_sound").value;
+	  const stack_size = document.getElementById("stack_size").value;
+	  const weight = document.getElementById("weight").value;
+	  const durability = document.getElementById("durability").value;
+
+      const luaContent = `
+  {
+	type = "tool",
+	name = "${name}",
+	icon = "${icon}",
+	subgroup = "${subgroup}",
+	order = "${order}",
+	inventory_move_sound = item_sounds.${inventory_move_sound},
+	pick_sound = item_sounds.${pick_sound},
+	drop_sound = item_sounds.${drop_sound},
+	stack_size = ${stack_size},
+	weight = ${weight}*kg,
+	durability = ${durability},
+    durability_description_key = "description.science-pack-remaining-amount-key",
+    factoriopedia_durability_description_key = "description.factoriopedia-science-pack-remaining-amount-key",
+    durability_description_value = "description.science-pack-remaining-amount-value"
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "item-science.lua";
+	  link.click();
+    }
+	
+	function generateInfoJson3() {
+      const name = document.getElementById("name").value;
+      const icon = document.getElementById("icon").value;
+      const subgroup = document.getElementById("subgroup").value;
+      const order = document.getElementById("order").value;
+	  const inventory_move_sound = document.getElementById("inventory_move_sound").value;
+	  const pick_sound = document.getElementById("pick_sound").value;
+	  const drop_sound = document.getElementById("drop_sound").value;
+	  const stack_size = document.getElementById("stack_size").value;
+	  const weight = document.getElementById("weight").value;
+	  const place_result = document.getElementById("place_result").value;
+
+      const luaContent = `
+  {
+	type = "tool",
+	name = "${name}",
+	icon = "${icon}",
+	subgroup = "${subgroup}",
+	order = "${order}",
+	inventory_move_sound = item_sounds.${inventory_move_sound},
+	pick_sound = item_sounds.${pick_sound},
+	drop_sound = item_sounds.${drop_sound},
+	stack_size = ${stack_size},
+	weight = ${weight}*kg,
+	place_result = ${place_result}
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "item-build.lua";
+	  link.click();
+    }
+  </script>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<footer class="footer">
+  <p>Наведитесь на текст значения. При наведении на текст может появиться подсказка.</p>
+  <p>&copy; 2025 Factorio Modding Tool. Все права защищены... Так ведь?</p>
+  <a href="index.html">Главная</a> |
+  <a onclick="alert('Функция в разработке.')" href="https://example.com/support">Поддержка</a>
+</footer>
+</body>
+</html>

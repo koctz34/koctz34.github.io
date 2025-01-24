@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factorio Modding Tool: Create Mod</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span>0.1 Альфа</span>
+    </div>
+    <h1>Создание info.json</h1>
+    <form id="modForm">
+      <label for="modName">Название мода:</label>
+      <input type="text" id="modName" name="modName" value="Testorio" required>
+	  <br></br>
+
+      <label for="modVersion">Версия:</label>
+      <input type="text" id="modVersion" name="modVersion" value="1.0" required>
+	  <br></br>
+
+      <label for="modAuthor">Автор:</label>
+      <input type="text" id="modAuthor" name="modAuthor" value="You" required>
+	  <br></br>
+
+      <label for="modDescription">Описание:</label>
+      <textarea id="modDescription" name="modDescription"></textarea>
+	  <br></br>
+	  
+	  <label for="modSpace">Space Age:</label>
+      <input type="checkBox" id="modSpace" name="modSpace" onclick="alet()">
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson()">Создать файл</button>
+    </form>
+	<button class="button" onclick="window.location.href = 'index.html'">BACK</button>
+  </div>
+
+  <script>
+    function generateInfoJson() {
+      const modName = document.getElementById("modName").value;
+      const modVersion = document.getElementById("modVersion").value;
+      const modAuthor = document.getElementById("modAuthor").value;
+      const modDescription = document.getElementById("modDescription").value;
+	  const modSpace = document.getElementById("modSpace").checked;
+
+      const infoJson = {
+        name: modName,
+        version: modVersion,
+        factorio_version: "2.0",
+        title: modName,
+        author: modAuthor,
+        description: modDescription,
+        dependencies: ["base >= 2.0"],
+		space_travel_required: modSpace
+      };
+
+      const blob = new Blob([JSON.stringify(infoJson, null, 2)], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "info.json";
+      link.click();
+    }
+	
+	function alet() {
+	  alert('Вам потребуеться вручную добавить в dependencies требование Space Age. Выглядит примерно так: ["base >= 2.0", "space-age"]')
+	}
+  </script>
+<footer class="footer">
+  <p>Наведитесь на текст значения. При наведении на текст может появиться подсказка.</p>
+  <p>&copy; 2025 Factorio Modding Tool. Все права защищены... Так ведь?</p>
+  <a href="index.html">Главная</a> |
+  <a onclick="alert('Функция в разработке.')" href="https://example.com/support">Поддержка</a>
+</footer>
+</body>
+</html>
