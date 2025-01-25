@@ -106,3 +106,25 @@ textarea:hover {
   margin: 10px;
   cursor: pointer;
 }
+
+inputr {
+  background: brick;
+  width: 5%;
+}
+inputr:hover {
+  background: red;
+}
+inputg {
+  background: forest;
+  width: 5%;
+}
+inputg:hover {
+  background: green;
+}
+inputb {
+  background: navy;
+  width: 5%;
+}
+inputb:hover {
+  background: blue;
+}

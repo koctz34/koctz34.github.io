@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factorio Modding Tool: Create Fluid</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span>0.2.1 Альфа</span>
+    </div>
+    <h1>Создание жидкости</h1>
+    <form id="modForm">
+      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name" name="name" value="brine" required>
+	  <br></br>
+
+      <label for="icon" title="Путь до вашей иконки предмета. Размеры иконок: 64х64.">Иконка:</label>
+      <input type="text" id="icon" name="icon" value="__base__/graphics/icons/fluid/water.png" required>
+	  <br></br>
+
+      <label for="subgroup" title="Это группа предметов куда будет включен предмет. Например руда железа относиться с raw-resource.">Группа:</label>
+		<select id="subgroup" name="subgroup" required>
+		<option value="fluid">fluids fluid</option>
+		
+		<option value="storage">logistics storage</option>
+		<option value="belt">logistics belt</option>
+		<option value="inserter">logistics inserter</option>
+		<option value="energy-pipe-distribution">logistics energy-pipe-distribution</option>
+		<option value="train-transport">logistics train-transport</option>
+		<option value="transport">logistics transport</option>
+		<option value="logistic-network">logistics logistic-network</option>
+		<option value="circuit-network">logistics circuit-network</option>
+		<option value="terrain">logistics terrain</option>
+		
+		<option value="tool">production tool</option>
+		<option value="energy">production energy</option>
+		<option value="extraction-machine">production extraction-machine</option>
+		<option value="smelting-machine">production smelting-machine</option>
+		<option value="production-machine">production production-machine</option>
+		<option value="module">production module</option>
+		<option value="space-related">production space-related</option>
+		
+		<option value="fluid-recipes">intermediate-products fluid-recipes</option>
+		<option value="raw-resource">intermediate-products raw-resource</option>
+		<option value="raw-material">intermediate-products raw-material</option>
+		<option value="barrel">intermediate-products barrel</option>
+		<option value="fill-barrel">intermediate-products fill-barrel</option>
+		<option value="empty-barrel">intermediate-products empty-barrel</option>
+		<option value="intermediate-product">intermediate-products intermediate-product</option>
+		<option value="intermediate-recipe">intermediate-products intermediate-recipe</option>
+		<option value="uranium-processing">intermediate-products uranium-processing</option>
+		<option value="science-pack">intermediate-products science-pack</option>
+		<option value="internal-process">intermediate-products internal-process</option>
+		
+		<option value="inserter">combat inserter</option>
+		<option value="gun">combat gun</option>
+		<option value="ammo">combat ammo</option>
+		<option value="capsule">combat capsule</option>
+		<option value="armor">combat armor</option>
+		<option value="equipment">combat equipment</option>
+		<option value="utility-equipment">combat utility-equipment</option>
+		<option value="military-equipment">combat military-equipment</option>
+		<option value="defensive-structure">combat defensive-structure</option>
+		<option value="turret">combat turret</option>
+		<option value="ammo-category">combat ammo-category</option>
+	    </select>
+	  <br></br>
+	  
+	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order" name="order" value="a" required>
+	  <br></br>
+	  
+	  <label for="default_temperature" title="Нормальная температура жидкости. В градусах цельсия.">Температура:</label>
+      <input type="number" id="default_temperature" name="default_temperature" value="15" required>
+	  <br></br>
+	  
+	  <label for="max_temperature" title="Максимальная температура жидкости при которой она испаряеться. В градусах цельсия.">Максимальная температура:</label>
+      <input type="number" id="max_temperature" name="max_temperature" value="100" required>
+	  <br></br>
+	  
+	  <label for="heat_capacity" title="Количество сохраняемого тепла. В kJ.">Сохраняемое тепло:</label>
+      <input type="number" id="heat_capacity" name="heat_capacity" value="2" required>
+	  <br></br>
+	  
+	  <label for="base_colorr" title="Базовый цвет жидкости.">Цвет (RGB):</label>
+      <input type="number" class="inputr" id="base_colorr" name="base_colorr" value="0" required>
+	  <input type="number" class="inputg" id="base_colorg" name="base_colorg" value="0.34" required>
+	  <input type="number" class="inputb" id="base_colorb" name="base_colorb" value="0.6" required>
+	  <br></br>
+	  
+	  <label for="flow_colorr" title="Цвет жидкости когда она течет.">Цвет течения (RGB):</label>
+      <input type="number" class="inputr" id="flow_colorr" name="flow_colorr" value="0.7" required>
+	  <input type="number" class="inputg" id="flow_colorg" name="flow_colorg" value="0.7" required>
+	  <input type="number" class="inputb" id="flow_colorb" name="flow_colorb" value="0.7" required>
+	  <br></br>
+	  
+	  <label for="auto_barrel" title="Создать ли бочку для этой жидкости.">Создание бочки:</label>
+      <input type="checkBox" id="auto_barrel" name="auto_barrel">
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson()">Создать файл</button>
+    </form>
+	<button class="button" onclick="window.location.href = 'index.html'">BACK</button>
+  </div>
+
+  <script>
+    function generateInfoJson() {
+      const name = document.getElementById("name").value;
+      const icon = document.getElementById("icon").value;
+      const subgroup = document.getElementById("subgroup").value;
+      const order = document.getElementById("order").value;
+	  const default_temperature = document.getElementById("default_temperature").value;
+	  const max_temperature = document.getElementById("max_temperature").value;
+	  const heat_capacity = document.getElementById("heat_capacity").value;
+	  
+	  const base_colorr = document.getElementById("base_colorr").value;
+	  const base_colorg = document.getElementById("base_colorg").value;
+	  const base_colorb = document.getElementById("base_colorb").value;
+	  
+	  const flow_colorr = document.getElementById("flow_colorr").value;
+	  const flow_colorg = document.getElementById("flow_colorg").value;
+	  const flow_colorb = document.getElementById("flow_colorb").value;
+	  
+	  const auto_barrel = document.getElementById("auto_barrel").checked;
+
+      const luaContent = `
+  {
+    type = "fluid",
+    name = "${name}",
+    subgroup = "${subgroup}",
+    default_temperature = ${default_temperature},
+    max_temperature = ${max_temperature},
+    heat_capacity = "${heat_capacity}kJ",
+    base_color = {${base_colorr}, ${base_colorg}, ${base_colorb}},
+    flow_color = {${flow_colorr}, ${flow_colorg}, ${flow_colorb}},
+    icon = "${icon}",
+    order = "${order}",
+	auto_barrel = ${auto_barrel}
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "fluid.lua";
+	  link.click();
+    }
+  </script>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<footer class="footer">
+  <p>Наведитесь на текст значения. При наведении на текст может появиться подсказка.</p>
+  <p>&copy; 2025 Factorio Modding Tool. Все права защищены... Так ведь?</p>
+  <a href="index.html">Главная</a> |
+  <a onclick="alert('Функция в разработке.')" href="https://example.com/support">Поддержка</a>
+</footer>
+</body>
+</html>

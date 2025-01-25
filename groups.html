@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <span>0.1.1 Альфа</span>
+      <span>0.2.1 Альфа</span>
     </div>
     <h1>Создание вкладки предметов</h1>
 	<p>Учитывайте то, что кастомные группы вам прийдеться добавлять в код предмета вручную.</p>
@@ -19,7 +19,7 @@
 	  <br></br>
 
       <label for="icon" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
-      <input type="text" id="icon" name="icon" value="__space-age__/graphics/icons/space-platform-foundation.png" required>
+      <input type="text" id="icon" name="icon" value="__base__/graphics/item-group/logistics.png" required>
 	  <br></br>
 	  
 	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
@@ -28,24 +28,22 @@
 
       <button class="buttonr" onclick="generateInfoJson()">Создать файл</button>
     </form>
-	<br></br>
-	<br></br>
-	<br></br>
+<br></br>
 	<br></br>
 	
 	<h1>Создание группы</h1>
 	<p>Учитывайте то, что кастомные группы вам прийдеться добавлять в код предмета вручную.</p>
     <form id="modForm">
-      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
-      <input type="text" id="name" name="name" value="raws" required>
+      <label for="name2" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name2" name="name2" value="raws" required>
 	  <br></br>
 
-      <label for="group" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
-      <input type="text" id="group" name="group" value="logistics" required>
+      <label for="group2" title="Название вашей вкладки. Ну или же из существующих logistics, production, intermediate-products, combat.">Вкладка:</label>
+      <input type="text" id="group2" name="group2" value="logistics" required>
 	  <br></br>
 	  
-	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
-      <input type="text" id="order" name="order" value="a" required>
+	  <label for="order2" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order2" name="order2" value="a" required>
 	  <br></br>
 
       <button class="buttonr" onclick="generateInfoJson2()">Создать файл</button>
@@ -77,9 +75,9 @@
     }
 	
 	function generateInfoJson2() {
-      const name = document.getElementById("name").value;
-      const group = document.getElementById("group").value;
-      const order = document.getElementById("order").value;
+      const name = document.getElementById("name2").value;
+      const group = document.getElementById("group2").value;
+      const order = document.getElementById("order2").value;
 
       const luaContent = `
   {

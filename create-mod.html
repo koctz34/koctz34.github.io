@@ -9,27 +9,28 @@
 <body>
   <div class="container">
     <div class="header">
-      <span>0.1.1 Альфа</span>
+      <span>0.2.1 Альфа</span>
     </div>
+	<button class="button" onclick="window.location.href = 'index.html'">BACK</button>
     <h1>Создание info.json</h1>
     <form id="modForm">
-      <label for="modName">Название мода:</label>
+      <label for="modName" title="С маленькой буквы и на английском.">Название мода:</label>
       <input type="text" id="modName" name="modName" value="Testorio" required>
 	  <br></br>
 
-      <label for="modVersion">Версия:</label>
-      <input type="text" id="modVersion" name="modVersion" value="1.0" required>
+      <label for="modVersion" title="Версия мода. Major.Minor.Fix.">Версия:</label>
+      <input type="text" id="modVersion" name="modVersion" value="1.0.0" required>
 	  <br></br>
 
-      <label for="modAuthor">Автор:</label>
+      <label for="modAuthor" title="Автор(ы) мода.">Автор:</label>
       <input type="text" id="modAuthor" name="modAuthor" value="You" required>
 	  <br></br>
 
-      <label for="modDescription">Описание:</label>
+      <label for="modDescription" title="Описание мода.">Описание:</label>
       <textarea id="modDescription" name="modDescription"></textarea>
 	  <br></br>
 	  
-	  <label for="modSpace">Space Age:</label>
+	  <label for="modSpace" title="Требует ли мод дополнение Space Age.">Space Age:</label>
       <input type="checkBox" id="modSpace" name="modSpace" onclick="alet()">
 	  <br></br>
 

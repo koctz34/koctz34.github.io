@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factorio Modding Tool: Create Achievement</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span>0.2.1 Альфа</span>
+    </div>
+    <h1>Создание достижения на постройку</h1>
+    <form id="modForm">
+      <label for="name" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name" name="name" value="turbo-speed" required>
+	  <br></br>
+
+      <label for="icon" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
+      <input type="text" id="icon" name="icon" value="__base__/graphics/achievement/automate-this.png" required>
+	  <br></br>
+	  
+	  <label for="order" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order" name="order" value="a" required>
+	  <br></br>
+	  
+	  <label for="to_build" title="Название энтити которое надо построить.">Энтити:</label>
+      <input type="text" id="to_build" name="to_build" value="turbo-transport-belt" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson()">Создать файл</button>
+    </form>
+	<br></br>
+	<br></br>
+	
+	<h1>Создание достижения на технологию</h1>
+    <form id="modForm">
+      <label for="name2" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name2" name="name2" value="all-repair" required>
+	  <br></br>
+
+      <label for="icon2" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
+      <input type="text" id="icon2" name="icon2" value="__base__/graphics/achievement/eco-unfriendly.png" required>
+	  <br></br>
+	  
+	  <label for="order2" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order2" name="order2" value="a" required>
+	  <br></br>
+	  
+	  <label for="to_build2" title="Название технологии которую надо изучить.">Технология:</label>
+      <input type="text" id="to_build2" name="to_build2" value="repair-pack" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson2()">Создать файл</button>
+    </form>
+	<br></br>
+	<br></br>
+	
+	<h1>Создание достижения на производство энергии</h1>
+    <form id="modForm">
+      <label for="name3" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name3" name="name3" value="solar-panels-2" required>
+	  <br></br>
+
+      <label for="icon3" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
+      <input type="text" id="icon3" name="icon3" value="__base__/graphics/achievement/eco-unfriendly.png" required>
+	  <br></br>
+	  
+	  <label for="order3" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order3" name="order3" value="a" required>
+	  <br></br>
+	  
+	  <label for="to_build3" title="Название энтити который должен создать энергию.">Источник:</label>
+      <input type="text" id="to_build3" name="to_build3" value="solar-panel" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson3()">Создать файл</button>
+    </form>
+	<br></br>
+	<br></br>
+	
+	<h1>Создание достижения на продукцию</h1>
+    <form id="modForm">
+      <label for="name4" title="С маленькой буквы и на английском.">Название:</label>
+      <input type="text" id="name4" name="name4" value="craft-solar-panel" required>
+	  <br></br>
+
+      <label for="icon4" title="Путь до вашей иконки предмета. Размеры иконок: 128х128.">Иконка:</label>
+      <input type="text" id="icon4" name="icon4" value="__base__/graphics/achievement/eco-unfriendly.png" required>
+	  <br></br>
+	  
+	  <label for="order4" title="Порядок в группе. С a по z. Только одна английская буква.">Порядок:</label>
+      <input type="text" id="order4" name="order4" value="a" required>
+	  <br></br>
+	  
+	  <label for="to_build4" title="Название энтити который нужно создать.">Продукция:</label>
+      <input type="text" id="to_build4" name="to_build4" value="solar-panel" required>
+	  <br></br>
+	  
+	  <label for="amount4" title="Сколько продукции нужно создать.">Количество:</label>
+      <input type="number" id="amount4" name="amount4" value="100" required>
+	  <br></br>
+	  
+	  <label for="limited_to_one_game4" title="Считать ли количество произвденной продукции со одной игры.">В одной игре:</label>
+      <input type="checkbox" id="limited_to_one_game4" name="limited_to_one_game4" required>
+	  <br></br>
+
+      <button class="buttonr" onclick="generateInfoJson4()">Создать файл</button>
+    </form>
+	<button class="button" onclick="window.location.href = 'index.html'">BACK</button>
+  </div>
+
+  <script>
+    function generateInfoJson() {
+      const name = document.getElementById("name").value;
+      const icon = document.getElementById("icon").value;
+      const order = document.getElementById("order").value;
+	  const to_build = document.getElementById("to_build").value;
+
+      const luaContent = `
+  {
+	type = "build-entity-achievement",
+	name = "${name}",
+	to_build = "${to_build}",
+	icon = "${icon}",
+	order = "${order}",
+	icon_size = 128
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "build-entity-achievement.lua";
+	  link.click();
+    }
+	
+	function generateInfoJson2() {
+      const name = document.getElementById("name2").value;
+      const icon = document.getElementById("icon2").value;
+      const order = document.getElementById("order2").value;
+	  const to_build = document.getElementById("to_build2").value;
+
+      const luaContent = `
+  {
+	type = "research-achievement",
+	name = "${name}",
+	technology = "${to_build}",
+	icon = "${icon}",
+	order = "${order}",
+	icon_size = 128
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "research-achievement.lua";
+	  link.click();
+    }
+	
+	function generateInfoJson3() {
+      const name = document.getElementById("name3").value;
+      const icon = document.getElementById("icon3").value;
+      const order = document.getElementById("order3").value;
+	  const to_build = document.getElementById("to_build3").value;
+
+      const luaContent = `
+  {
+	type = "use-entity-in-energy-production-achievement",
+	name = "${name}",
+	entity = "${to_build}",
+	icon = "${icon}",
+	order = "${order}",
+	icon_size = 128
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "use-entity-in-energy-production-achievement.lua";
+	  link.click();
+    }
+	
+	function generateInfoJson4() {
+      const name = document.getElementById("name4").value;
+      const icon = document.getElementById("icon4").value;
+      const order = document.getElementById("order4").value;
+	  const to_build = document.getElementById("to_build4").value;
+	  const amount = document.getElementById("amount4").value;
+	  const limited_to_one_game = document.getElementById("limited_to_one_game4").checked;
+
+      const luaContent = `
+  {
+	type = "produce-achievement",
+	name = "${name}",
+	item_product = "${to_build}",
+	amount = ${amount},
+	icon = "${icon}",
+	order = "${order}",
+	icon_size = 128,
+	limited_to_one_game = ${limited_to_one_game}
+  },
+	  `;
+
+      const blob = new Blob([luaContent], { type: "application/lua" });
+	  const link = document.createElement("a");
+	  link.href = URL.createObjectURL(blob);
+	  link.download = "produce-achievement.lua";
+	  link.click();
+    }
+  </script>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<footer class="footer">
+  <p>Наведитесь на текст значения. При наведении на текст может появиться подсказка.</p>
+  <p>&copy; 2025 Factorio Modding Tool. Все права защищены... Так ведь?</p>
+  <a href="index.html">Главная</a> |
+  <a onclick="alert('Функция в разработке.')" href="https://example.com/support">Поддержка</a>
+</footer>
+</body>
+</html>
